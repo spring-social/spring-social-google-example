@@ -1,0 +1,138 @@
+<h1>Google+</h1>
+
+<ul class="nav nav-pills">
+	<li><a href="#/plus/people">People</a></li>
+	<li><a href="#/plus/activities">Activities</a></li>
+	<li class="active"><a href="#/plus/moments">Moments</a></li>
+</ul>
+
+<div class="row">
+	<div class="span6">
+		<button class="btn btn-success btn-large" ng-click="showNewMomentModal()">New Moment</button>
+		<br/><br/>
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<ul class="unstyled">
+					<li ng-repeat="m in page.items" class="card">
+						<div class="clearfix">
+							<span>{{m.type.substr(26)}}</span>
+							<i class="pull-right">{{m.startDate|date:'medium'}}</i>
+						</div>
+						<h5 ui-if="m.target.name">{{m.target.name}}</h5>
+						<p ui-if="m.target.text">{{m.target.text}}</p>
+						<img ui-if="m.target.image" ng-src="{{m.target.image}}"/>
+						<a ng-href="{{m.target.url}}" target="_blank">{{m.target.url}}</a><br/><br/>
+						<div class="clearfix">
+							<button ng-click="deleteMoment(m)" class="btn btn-link pull-right">Delete</button>
+						</div>
+					</li>
+				</ul>
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/plus.login</pre>
+		<p>Searching and fetching public activities do not require authentication</p>
+		<p>Code example:</p>
+		<pre>// List a user's visible activities
+ActivitiesPage page = google
+   .plusOperations()
+   .getActivities("me", null);
+
+// Search public activities
+ActivitiesPage page = google
+   .plusOperations()
+   .searchPublicActivities("spring", null);</pre>
+	</div>
+</div>
+
+<div modal="newMomentModal">
+	<form class="form-horizontal" ng-submit="insertMoment()">
+		<div class="modal-header"><h3>New Moment</h3></div>
+		<div class="modal-body">
+			<div class="control-group">
+				<label for="moment-type" class="control-label">Type</label>
+				<div class="controls">
+					<select id="moment-type" class="input-xlarge" ng-model="moment.type" required>
+						<option value="http://schemas.google.com/AddActivity">AddActivity</option>
+						<option value="http://schemas.google.com/BuyActivity">BuyActivity</option>
+						<option value="http://schemas.google.com/CheckInActivity">CheckInActivity</option>
+						<option value="http://schemas.google.com/CommentActivity">CommentActivity</option>
+						<option value="http://schemas.google.com/CreateActivity">CreateActivity</option>
+						<option value="http://schemas.google.com/DiscoverActivity">DiscoverActivity</option>
+						<option value="http://schemas.google.com/ListenActivity">ListenActivity</option>
+						<option value="http://schemas.google.com/ReserveActivity">ReserveActivity</option>
+						<option value="http://schemas.google.com/ReviewActivity">ReviewActivity</option>
+						<option value="http://schemas.google.com/WantActivity">WantActivity</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="target-url" class="control-label">Target URL</label>
+				<div class="controls">
+					<input type="url" id="target-url" class="input-xlarge" ng-model="moment.target.url" required/>
+				</div>
+			</div>
+			<div ui-if="moment.type == 'http://schemas.google.com/CommentActivity' || moment.type == 'http://schemas.google.com/ReviewActivity'">
+				<div class="control-group">
+					<label for="result-url" class="control-label">Result URL</label>
+					<div class="controls">
+						<input type="url" id="result-url" class="input-xlarge" ng-model="moment.result.url" required/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="result-text" class="control-label">Result text</label>
+					<div class="controls">
+						<textarea id="result-text" class="input-xlarge" ng-model="moment.result.text" required></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="result-name" class="control-label">Result name</label>
+					<div class="controls">
+						<input type="text" id="result-name" class="input-xlarge" ng-model="moment.result.name"/>
+					</div>
+				</div>
+			</div>
+			<div ui-if="moment.type == 'http://schemas.google.com/ReviewActivity'">
+				<div class="control-group">
+					<label for="rating-value" class="control-label">Result rating value</label>
+					<div class="controls">
+						<input type="text" id="rating-value" class="input-xlarge" ng-model="moment.result.reviewRating.ratingValue"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="rating-best" class="control-label">Result best rating</label>
+					<div class="controls">
+						<input type="text" id="rating-best" class="input-xlarge" ng-model="moment.result.reviewRating.bestRating"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="rating-best" class="control-label">Result worst rating</label>
+					<div class="controls">
+						<input type="text" id="rating-worst" class="input-xlarge" ng-model="moment.result.reviewRating.worstRating"/>
+					</div>
+				</div>
+			</div>
+			<div ui-if="moment.type == 'http://schemas.google.com/ReserveActivity'">
+				<div class="control-group">
+					<label for="result-start-date" class="control-label">Result start date</label>
+					<div class="controls">
+						<input type="text" id="result-start-date" class="input-xlarge" ui-date ui-date-format="@" ng-model="moment.result.startDate"/>
+					</div>
+				</div>
+				<div class="control-group">
+					<label for="result-start-date" class="control-label">Result attendee count</label>
+					<div class="controls">
+						<input type="number" id="result-attendee-count" class="input-xlarge" ng-model="moment.result.attendeeCount"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary">Insert</button>
+			<button type="button" class="btn" ng-click="newMomentModal=false">Cancel</button>
+		</div>
+	</form>
+</div>

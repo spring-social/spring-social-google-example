@@ -1,0 +1,29 @@
+<h1>Task Lists</h1>
+
+<div class="row">
+	<div class="span6">
+		<div><a href="#/tasks/edit/" class="btn btn-success">New Task List</a></div>
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<ul class="unstyled">
+					<li ng-repeat="t in page.items" class="task-item">
+						<a href="#/tasks/list/{{t.id}}" class="lead">{{t.title}}</a>
+						<a href="#/tasks/edit/{{t.id}}" class="edit">Edit</a>
+					</li>
+				</ul>
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/tasks
+https://www.googleapis.com/auth/tasks.readonly</pre>
+		<p>Code example:</p>
+		<pre>
+// List the user's task lists
+TaskListsPage page = google
+   .taskOperations()
+   .getTaskLists();</pre>
+	</div>
+</div>

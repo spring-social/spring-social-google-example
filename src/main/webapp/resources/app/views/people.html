@@ -1,0 +1,52 @@
+<div ng-include="'resources/app/views/people-nav.html'"></div>
+
+<div class="row">
+	<div class="span6">
+		<div ng-include="'resources/app/views/people-form.html'"></div>
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<ul class="unstyled">
+					<li ng-repeat="p in page.items" class="card">
+						<a href="#/plus/people/{{p.id}}" class="person-item">
+							<img ng-src="{{p.imageUrl}}"/> <span>{{p.displayName}}</span>
+						</a>
+					</li>
+				</ul>
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/plus.login</pre>
+		<p>The search operation does not require authentication</p>
+		<p>Code example:</p>
+		<pre>
+// List people in circles
+PeoplePage page = google
+   .plusOperations()
+   .getPeopleInCircles("me", null);
+
+// Search people
+PeoplePage page = google
+   .plusOperations()
+   .searchPeople("john smith", null);
+
+// Get authenticated user profile
+Person me = google
+   .plusOperations()
+   .getGoogleProfile();
+
+// Get activity +1'ers
+PeoplePage page = google
+   .plusOperations()
+   .getActivityPlusOners(
+      "z13buzzoqlnoetyuu23ds5w5yz3gwpe3d", null);
+
+// Get activity resharers
+PeoplePage page = google
+   .plusOperations()
+   .getActivityResharers(
+      "z13buzzoqlnoetyuu23ds5w5yz3gwpe3d", null);</pre>
+	</div>
+</div>

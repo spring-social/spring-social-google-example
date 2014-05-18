@@ -1,0 +1,46 @@
+<div ng-include="'resources/app/views/activities-nav.html'"></div>
+
+<div class="row">
+	<div class="span6">
+		<div ng-include="'resources/app/views/activities-form.html'"></div>
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<ul class="unstyled">
+					<li ng-repeat="ac in page.items" class="card">
+						<div>
+							<a ng-href="#/plus/activities/list/{{ac.actor.id}}">
+								<img ng-src="{{ac.actor.imageUrl}}" class="img-circle"/> <span>{{ac.actor.displayName}}</span>
+							</a>
+						</div>
+						<p ng-bind-html-unsafe="ac.content"></p>
+						<ul class="unstyled">
+							<li ng-repeat="at in ac.attachments">
+								<a ng-href="{{at.url}}" target="_blank">{{at.displayName}}</a>
+								<p ng-bind-html-unsafe="at.content"></p>
+								<img ui-if="at.previewImageUrl" ng-src="{{at.previewImageUrl}}"/>
+							</li>
+						</ul>
+						<br/>
+						<a ng-href="#/plus/activities/{{ac.id}}" class="btn">View activity</a>
+					</li>
+				</ul>
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/plus.login</pre>
+		<p>Searching and fetching public activities do not require authentication</p>
+		<p>Code example:</p>
+		<pre>// List a user's visible activities
+ActivitiesPage page = google
+   .plusOperations()
+   .getActivities("me", null);
+
+// Search public activities
+ActivitiesPage page = google
+   .plusOperations()
+   .searchPublicActivities("spring", null);</pre>
+	</div>
+</div>

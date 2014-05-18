@@ -1,0 +1,14 @@
+<div ng-controller="ActivitiesFormCtrl">
+	<form ng-submit="getActivity(activityId)" class="form-horizontal">
+		<input ng-model="activityId" type="text" class="input-large" autofocus="autofocus" placeholder="Enter activity ID"/>
+		<button type="submit" class="btn">Get Activity</button>
+	</form>
+	<form ng-submit="searchActivities(query)" class="form-horizontal">
+		<input ng-model="query" type="text" class="input-large" placeholder="Search for something..."/>
+		<button type="submit" class="btn">Search Activities</button>
+	</form>
+	<form ng-submit="listActivities(profileId)" class="form-horizontal">
+		<input ng-model="profileId" type="text" class="input-large" placeholder="Enter profile ID or 'me'"/>
+		<button type="submit" class="btn">Get Activities</button>
+	</form>
+</div>

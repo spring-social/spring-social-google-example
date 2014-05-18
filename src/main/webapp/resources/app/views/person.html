@@ -1,0 +1,80 @@
+<div ng-include="'resources/app/views/people-nav.html'"></div>
+
+<div class="row">
+	<div class="span6">
+		<div ng-include="'resources/app/views/people-form.html'"></div>
+		
+		<form class="form-horizontal">
+			<div class="control-group">
+				<div class="controls">
+					<img ng-src="{{person.imageUrl}}" />
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Profile ID:</label>
+				<div class="controls">
+					<span class="uneditable-input input-xlarge">{{person.id}}</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Display Name:</label>
+				<div class="controls">
+					<span class="uneditable-input input-xlarge">{{person.displayName}}</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Gender:</label>
+				<div class="controls">
+					<span class="uneditable-input input-xlarge">{{person.gender}}</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">About Me:</label>
+				<div class="controls">
+					<span class="uneditable-input input-xlarge">{{person.aboutMe}}</span>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label">Relationship Status:</label>
+				<div class="controls">
+					<span class="uneditable-input input-xlarge">{{person.relationshipStatus}}</span>
+				</div>
+			</div>
+		</form>
+		
+		<div>
+			<h5>URLs</h5>
+			<ul>
+				<li ng-repeat="(key, value) in person.urls"><a ng-href="{{key}}" target="_blank">{{key}}</a> {{value}}</li>
+			</ul>
+		</div>
+		<div>
+			<h5>Organizations</h5>
+			<ul>
+				<li ng-repeat="organization in person.organizations">{{organization.name}}</li>
+			</ul>
+		</div>
+		<div>
+			<h5>Places Lived</h5>
+			<ul>
+				<li ng-repeat="(key, value) in person.placesLived">{{key}}</li>
+			</ul>
+		</div>
+		<div>
+			<a ng-href="#/plus/activities/list/{{person.id}}" class="btn">Activities</a>
+		</div>
+		
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/plus.login</pre>
+		<p>Authentication is required only for fetching the authenticated user ("me")</p>
+		<p>Code example:</p>
+		<pre>
+// Get  user profile
+Person me = google
+	.plusOperations()
+	.getPerson("me");
+		</pre>
+	</div>
+</div>

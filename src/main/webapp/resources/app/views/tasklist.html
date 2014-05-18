@@ -1,0 +1,40 @@
+<h1>Task List</h1>
+
+<div class="row">
+	<div class="span6">
+		<form ng-submit="saveTaskList()" class="form-horizontal">
+			<div class="control-group">
+				<label for="name" class="control-label">Name</label>
+				<div class="controls">
+					<input ng-model="taskList.title" required type="text" id="name" class="input-large" autofocus="autofocus"/>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-success">Save</button>
+					<a href="#/tasks" class="btn">Cancel</a>
+					<button ui-if="taskList.id" ng-click="deleteTaskList()" type="button" class="btn btn-danger pull-right">Delete</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/tasks
+https://www.googleapis.com/auth/tasks.readonly</pre>
+		<p>Code example:</p>
+		<pre>
+// Get a task list
+TaskList taskList = google
+   .taskOperations()
+   .getTaskList("abcd1234");
+
+// Save a task list
+TaskList taskList = google
+   .taskOperations()
+   .saveTaskList(new TaskList("Stuff to do"));
+
+// Delete a task list
+google
+   .taskOperations()
+   .deleteTaskList("abcd1234");</pre>
+	</div>
+</div>

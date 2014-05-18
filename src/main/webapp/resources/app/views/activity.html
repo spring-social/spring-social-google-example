@@ -1,0 +1,59 @@
+<div ng-include="'resources/app/views/activities-nav.html'"></div>
+
+<div class="row">
+	<div class="span6">
+		<div ng-include="'resources/app/views/activities-form.html'"></div>
+		
+		<div>
+			<a ng-href="#/plus/activities/list/{{activity.actor.id}}">
+				<img ng-src="{{activity.actor.imageUrl}}" class="img-circle"/> <span>{{activity.actor.displayName}}</span>
+			</a>
+		</div>
+		<p ng-bind-html-unsafe="activity.content"></p>
+		<ul class="unstyled">
+			<li ng-repeat="at in activity.attachments">
+				<a ng-href="{{at.url}}" target="_blank">
+					<p>{{at.displayName}}</p>
+					<p ng-bind-html-unsafe="at.content"></p>
+					<img ui-if="at.previewImageUrl" ng-src="{{at.previewImageUrl}}"/>
+				</a>
+			</li>
+		</ul>
+		<div>
+			<a ui-if="activity.plusOners" ng-href="#/plus/people/plusoners/{{activity.id}}" class="btn">{{activity.plusOners}} +1'ers</a>
+			<a ui-if="activity.resharers" ng-href="#/plus/people/resharers/{{activity.id}}" class="btn">{{activity.resharers}} Resharers</a>
+			<button ui-if="!page" ng-click="loadComments()" class="btn">Load Comments</button>
+		</div>
+		
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<ul class="unstyled">
+					<li ng-repeat="c in page.items">
+						<br/>
+						<a href="#/plus/people/{{c.actor.id}}" class="person-item">
+							<img ng-src="{{c.actor.imageUrl}}" class="img-circle"/> <span>{{c.actor.displayName}}</span>
+						</a>
+						<p ng-bind-html-unsafe="c.content"></p>
+					</li>
+				</ul>
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+		
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/plus.login</pre>
+		<p>Searching and fetching public activities do not require authentication</p>
+		<p>Code example:</p>
+		<pre>// Get an activity by ID
+Activity activity = google
+   .plusOperations()
+   .getActivity("z13buzzoqlnoetyuu23ds5w5yz3gwpe3d");
+
+// Get the comments to an activity
+ActivityCommentsPage page = google
+   .plusOperations()
+   .getComments("z13buzzoqlnoetyuu23ds5w5yz3gwpe3d", null);</pre>
+	</div>
+</div>
