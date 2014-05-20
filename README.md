@@ -1,12 +1,9 @@
-Spring Social Quickstart
-========================
-This sample is designed to get you up and running quickly.
-See the walkthrough at: https://github.com/SpringSource/spring-social/wiki/Quick-Start
+Spring Social Example
+=====================
+Example web app which uses Spring Social Google. 
 
-To run, simply import the project into your IDE and deploy to a Servlet 2.5 or > container such as Tomcat 6 or 7.
-You can also deploy from the command line with:
-$ mvn tomcat:run
+https://github.com/GabiAxel/spring-social-google
 
-Access the project at http://localhost:8080/spring-social-quickstart
-
-Discuss at forum.springsource.org and collaborate with the development team at jira.springframework.org/browse/SOCIAL.
+Set up a project at https://console.developers.google.com/ and add the 
+OAuth2 client ID and secret to the "google.clientId" and "google.clientSecret"
+environment properties when running the app.
