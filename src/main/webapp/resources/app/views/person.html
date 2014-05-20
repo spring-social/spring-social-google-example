@@ -45,7 +45,7 @@
 		<div>
 			<h5>URLs</h5>
 			<ul>
-				<li ng-repeat="(key, value) in person.urls"><a ng-href="{{key}}" target="_blank">{{key}}</a> {{value}}</li>
+				<li ng-repeat="url in person.urls"><a ng-href="{{url.value}}" target="_blank">{{url.label || url.value}}</a></li>
 			</ul>
 		</div>
 		<div>

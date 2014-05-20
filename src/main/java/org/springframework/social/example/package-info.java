@@ -1,4 +1,4 @@
 /**
  * Contains @Controllers that demonstrate quick-start application functionality.
  */
-package org.springframework.social.quickstart;
+package org.springframework.social.example;

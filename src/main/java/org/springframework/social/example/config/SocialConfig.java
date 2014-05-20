@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.quickstart.config;
+package org.springframework.social.example.config;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -32,12 +32,12 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
+import org.springframework.social.example.user.SecurityContext;
+import org.springframework.social.example.user.SimpleConnectionSignUp;
+import org.springframework.social.example.user.SimpleSignInAdapter;
+import org.springframework.social.example.user.User;
 import org.springframework.social.google.api.Google;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.quickstart.user.SecurityContext;
-import org.springframework.social.quickstart.user.SimpleConnectionSignUp;
-import org.springframework.social.quickstart.user.SimpleSignInAdapter;
-import org.springframework.social.quickstart.user.User;
 
 /**
  * Spring Social Configuration.

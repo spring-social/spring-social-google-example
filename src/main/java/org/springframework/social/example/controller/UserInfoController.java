@@ -1,4 +1,4 @@
-package org.springframework.social.quickstart.controller;
+package org.springframework.social.example.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.google.api.Google;

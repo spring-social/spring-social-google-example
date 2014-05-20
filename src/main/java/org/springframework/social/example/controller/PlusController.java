@@ -1,4 +1,4 @@
-package org.springframework.social.quickstart.controller;
+package org.springframework.social.example.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 

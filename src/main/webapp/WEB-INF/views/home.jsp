@@ -27,7 +27,6 @@
 						<li><a href="#/">User Info</a></li>
 						<li><a href="#/plus/people">Google+</a></li>
 						<li><a href="#/tasks">Tasks</a></li>
-						<li><a href="drivefiles">Drive</a></li>
 					</ul>
 					
 					<ul class="nav pull-right">

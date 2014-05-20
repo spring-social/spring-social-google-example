@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.quickstart.config;
+package org.springframework.social.example.config;
 
 import javax.sql.DataSource;
 
@@ -34,7 +34,7 @@ import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
  * @author Keith Donald
  */
 @Configuration
-@ComponentScan(basePackages = "org.springframework.social.quickstart", excludeFilters = { @Filter(Configuration.class) })
+@ComponentScan(basePackages = "org.springframework.social.example", excludeFilters = { @Filter(Configuration.class) })
 public class MainConfig {
 
 	@Bean(destroyMethod = "shutdown")
