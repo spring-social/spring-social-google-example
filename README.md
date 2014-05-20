@@ -1,5 +1,5 @@
-Spring Social Example
-=====================
+Spring Social Google Example
+============================
 Example web app which uses Spring Social Google. 
 
 https://github.com/GabiAxel/spring-social-google
