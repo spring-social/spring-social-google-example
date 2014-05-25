@@ -11,4 +11,4 @@ environment properties when running the app.
 To run with Maven:
 mvn tomcat7:run -Dgoogle.clientId=CLIENT_ID -Dgoogle.clientSecret=CLIENT_SECRET
 
-The application will be available at http:localhost:8080/
+The application will be available at http://localhost:8080/
