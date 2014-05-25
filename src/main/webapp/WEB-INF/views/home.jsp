@@ -24,7 +24,6 @@
 			<div class="navbar-inner">
 				<div class="container">
 					<ul class="nav">
-						<li><a href="#/">User Info</a></li>
 						<li><a href="#/plus/people">Google+</a></li>
 						<li><a href="#/tasks">Tasks</a></li>
 					</ul>
@@ -48,7 +47,6 @@
 
         <!-- build:js scripts/scripts.js -->
         <script src="resources/app/scripts/client.js"></script>
-        <script src="resources/app/scripts/controllers/userinfo.js"></script>
         <script src="resources/app/scripts/controllers/peopleform.js"></script>
         <script src="resources/app/scripts/controllers/paginglist.js"></script>
         <script src="resources/app/scripts/controllers/peoplesearch.js"></script>

@@ -54,7 +54,7 @@ public class SocialConfig {
 
 	/**
 	 * When a new provider is added to the app, register its {@link ConnectionFactory} here.
-	 * @see FacebookConnectionFactory
+	 * @see GoogleConnectionFactory
 	 */
 	@Bean
 	public ConnectionFactoryLocator connectionFactoryLocator() {

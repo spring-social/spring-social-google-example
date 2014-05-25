@@ -4,10 +4,7 @@
 var clientApp = angular.module('clientApp',
 		[ 'ngResource', 'ui.utils', 'ui.date', 'ui.bootstrap' ]).config(
 		function($routeProvider, $dialogProvider) {
-			$routeProvider.when('/', {
-				templateUrl : 'resources/app/views/userinfo.html',
-				controller : 'UserInfoCtrl'
-			}).when('/plus/people', {
+			$routeProvider.when('/plus/people', {
 				templateUrl : 'resources/app/views/people.html',
 				controller : 'PeopleSearchCtrl'
 			}).when('/plus/people/:userId/circles', {
@@ -47,7 +44,7 @@ var clientApp = angular.module('clientApp',
 				templateUrl : 'resources/app/views/moments.html',
 				controller : 'MomentsCtrl'
 			}).otherwise({
-				redirectTo : '/'
+				redirectTo : '/plus/people'
 			});
 
 			$dialogProvider.options({
