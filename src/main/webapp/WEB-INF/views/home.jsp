@@ -26,6 +26,7 @@
 					<ul class="nav">
 						<li><a href="#/plus/people">Google+</a></li>
 						<li><a href="#/tasks">Tasks</a></li>
+						<li><a href="#/calendars">Calendar</a></li>
 					</ul>
 					
 					<ul class="nav pull-right">
@@ -63,6 +64,9 @@
         <script src="resources/app/scripts/controllers/tasks.js"></script>
         <script src="resources/app/scripts/controllers/task.js"></script>
         <script src="resources/app/scripts/controllers/moments.js"></script>
+        <script src="resources/app/scripts/controllers/calendars.js"></script>
+        <script src="resources/app/scripts/controllers/events.js"></script>
+        <script src="resources/app/scripts/controllers/event.js"></script>
         <!-- endbuild -->
 
     </body>

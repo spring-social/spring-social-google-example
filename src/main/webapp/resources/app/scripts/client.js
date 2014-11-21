@@ -1,5 +1,4 @@
 'use strict';
-
 // Declare app level module which depends on filters, and services
 var clientApp = angular.module('clientApp',
 		[ 'ngResource', 'ui.utils', 'ui.date', 'ui.bootstrap' ]).config(
@@ -43,6 +42,15 @@ var clientApp = angular.module('clientApp',
 			}).when('/plus/moments', {
 				templateUrl : 'resources/app/views/moments.html',
 				controller : 'MomentsCtrl'
+			}).when('/calendars', {
+				templateUrl : 'resources/app/views/calendars.html',
+				controller : 'CalendarsCtrl'
+			}).when('/calendars/list/:calendarId/:year/:month', {
+				templateUrl : 'resources/app/views/events.html',
+				controller : 'EventsCtrl'
+			}).when('/calendars/:calendarId/events/:eventId', {
+				templateUrl : 'resources/app/views/event.html',
+				controller : 'EventDetailCtrl'
 			}).otherwise({
 				redirectTo : '/plus/people'
 			});

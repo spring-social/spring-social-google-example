@@ -1,0 +1,78 @@
+<h1>Events</h1>
+<h2>{{calendarId}} </h2>
+<div class="row">
+	<div class="span6">
+		<button ng-click="backToCalendars()" class="btn">Back</button>
+		<button ng-click="showNewEventModal()" class="btn btn-success">New Event</button>
+		<h3>
+			<a href="#/calendars/list/{{calendarId | encodeUri}}/{{lastMonthPathParts}}" class="lead">&lt;{{lastMonthText}}</a>
+			{{thisMonthText}}
+			<a href="#/calendars/list/{{calendarId | encodeUri}}/{{nextMonthPathParts}}" class="lead">{{nextMonthText}}&gt;</a>
+		</h3>
+		<div ng-controller="PagingListCtrl">
+			<div ui-if="page">
+				<table class="" style="font-size=90%;">
+					<tr ng-repeat="e in page.items" style="vertical-align:top;">
+						<td style="white-space: nowrap;">
+							<a href="#/calendars/{{calendarId | encodeUri}}/events/{{e.id | encodeUri}}" class="">{{e|formatEventDate}}</a>
+						</td>
+						<td style="white-space: nowrap;">{{e|formatEventDuration}}</td>
+						<td>{{e.summary}}<span ui-if="e.location"> ({{e.location}})</span></td>
+					</tr>
+				</table>
+				
+				<button ui-if="page.nextPageToken" ng-click="loadMore()" ng-disabled="loading" class="btn">Load more</button>
+			</div>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/calendar
+https://www.googleapis.com/auth/calendar.readonly</pre>
+		<p>Code example:</p>
+		<pre>
+// List the user's events
+EventPage page = google.calendarOperations()
+   .eventListQuery(calendarId)
+   .fromPage(pageToken)
+   .timeMin(new Date(year, month, 1))
+   .timeMax(new Date(year, month + 1, 1))
+   .orderBy(OrderBy.START_TIME)
+   .singleEvents(true)
+   .getPage();</pre>
+	</div>
+</div>
+
+<!--  -->
+
+<div modal="newEventModal">
+	<form class="form-horizontal" ng-submit="insertEvent()">
+		<div class="modal-header"><h3>New Event</h3></div>
+		<div class="modal-body">
+<div class="row">
+	<div class="span6">
+			<div class="control-group">
+				<label for="spec-text" class="control-label">Specification</label>
+				<div class="controls">
+					<textarea id="spec-text" class="input-xlarge" ng-model="event.specification" required></textarea>
+				</div>
+			</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/calendar</pre>
+		<p>Code example:</p>
+		<pre>// Create an event
+Event event = google.calendarOperations()
+   .quickAddEvent(calendarId,
+      "Meeting at Work on Dec 3rd 10am-10:25am",
+      sendNotifications);</pre>
+	</div>
+</div>
+		</div>
+		<div class="modal-footer">
+			<button type="submit" class="btn btn-primary">Create</button>
+			<button type="button" class="btn" ng-click="newEventModal=false">Cancel</button>
+		</div>
+	</form>
+</div>
