@@ -86,8 +86,8 @@ public class SocialConfig {
 	}
 
 	/**
-	 * A proxy to a request-scoped object representing the current user's primary Facebook account.
-	 * @throws NotConnectedException if the user is not connected to facebook.
+	 * A proxy to a request-scoped object representing the current user's primary Google account.
+	 * @throws NotConnectedException if the user is not connected to Google.
 	 */
 	@Bean
 	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)	
