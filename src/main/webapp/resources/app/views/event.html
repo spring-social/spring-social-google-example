@@ -1,0 +1,28 @@
+<h1>Event</h1>
+<h2>{{event|formatEventDate}}: {{event.summary}} </h2>
+<div class="row">
+	<div class="span6">
+		<button ng-click="backToEvents()" type="button" class="btn">Back</button>
+		<button ui-if="event.id" ng-click="deleteEvent()" type="button" class="btn btn-danger">Delete</button>
+		<h3> </h3>
+		<div ui-if="event">
+<pre>
+{{event | json}}
+</pre>
+		</div>
+	</div>
+	<div class="span6">
+		<p>OAuth2 scope:</p>
+		<pre>https://www.googleapis.com/auth/calendar
+https://www.googleapis.com/auth/calendar.readonly</pre>
+		<p>Code example:</p>
+		<pre>
+// Get an event
+Event = google.calendarOperations()
+   .getEvent(calendarId, eventId);
+
+// Delete an event
+google.calendarOperations()
+   .deleteEvent(calendarId, eventId, sendNotifications);</pre>
+	</div>
+</div>
